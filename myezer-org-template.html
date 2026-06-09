@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyEzer Org Template</title>
+  <link href="https://fonts.googleapis.com/css2?family=Autour+One&display=swap" rel="stylesheet"/>
+  <style>
+    @font-face {
+      font-family: 'Armwrestler';
+      src: url('https://strangemanx.github.io/MyEzer-Pathfinder/Armwrestler.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .frame {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* BACKGROUND IMAGE — offset to the right */
+    .bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 75%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+      opacity: 0.85;
+    }
+
+    /* DARK GRADIENT — solid black left fading to transparent right */
+    .left-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,0.97) 25%,
+        rgba(0,0,0,0.85) 40%,
+        rgba(0,0,0,0.4) 60%,
+        rgba(0,0,0,0.1) 80%,
+        rgba(0,0,0,0) 100%
+      );
+      z-index: 2;
+    }
+
+    /* DARK OVERLAY ON BOTTOM FOR BRAND READABILITY */
+    .bottom-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 18%;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0) 100%);
+      z-index: 2;
+    }
+
+    /* HEADLINE — left aligned */
+    .headline {
+      position: absolute;
+      top: 80px;
+      left: 60px;
+      width: 55%;
+      z-index: 3;
+      text-align: left;
+    }
+
+    .headline h1 {
+      font-family: 'Armwrestler', sans-serif;
+      font-size: 88px;
+      line-height: 1.05;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 2px 4px 12px rgba(0,0,0,0.8);
+      word-break: break-word;
+    }
+
+    /* CIRCLE IMAGE — bottom left with gold border */
+    .circle-wrap {
+      position: absolute;
+      bottom: 120px;
+      left: 60px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 6px solid #D4A017;
+      z-index: 4;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    }
+
+    .circle-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    /* BRAND NAME AT BOTTOM */
+    .brand {
+      position: absolute;
+      bottom: 36px;
+      left: 0;
+      right: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 60px;
+    }
+
+    .brand-line {
+      flex: 1;
+      height: 2px;
+      background: #ffffff;
+      max-width: 220px;
+    }
+
+    .brand-text {
+      font-family: 'Autour One', cursive;
+      font-size: 32px;
+      color: #ffffff;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      text-shadow: 1px 2px 8px rgba(0,0,0,0.7);
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+
+    <!-- BACKGROUND IMAGE -->
+    <img class="bg" id="bgImg" src="" alt="background"/>
+
+    <!-- OVERLAYS -->
+    <div class="left-overlay"></div>
+    <div class="bottom-overlay"></div>
+
+    <!-- HEADLINE -->
+    <div class="headline">
+      <h1 id="headlineText"></h1>
+    </div>
+
+    <!-- CIRCLE IMAGE -->
+    <div class="circle-wrap">
+      <img id="circleImg" src="" alt="circle"/>
+    </div>
+
+    <!-- BRAND -->
+    <div class="brand">
+      <div class="brand-line"></div>
+      <span class="brand-text">MYEZER SERVICES</span>
+      <div class="brand-line"></div>
+    </div>
+
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const bg = params.get('bg');
+    const circle = params.get('circle');
+    const headline = params.get('headline');
+
+    if (bg) document.getElementById('bgImg').src = decodeURIComponent(bg);
+    if (circle) document.getElementById('circleImg').src = decodeURIComponent(circle);
+    if (headline) document.getElementById('headlineText').textContent = decodeURIComponent(headline);
+  </script>
+</body>
+</html>
